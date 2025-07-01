@@ -52,8 +52,8 @@
 }
 
 .skill-card {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background: #d7d7d7;
     border-radius: 12px;
     box-shadow: 8px 8px 16px #bcbcbc,
@@ -69,8 +69,8 @@
 }
 
 .skill-icon {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35;
 }
 
 .skill-name {
@@ -98,14 +98,14 @@
   background: #d7d7d7;
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 8px 8px 16px #bcbcbc, -4px -4px 8px #000000;
-  text-align: center;
+    box-shadow: 1px 1px 1px #bcbcbc,
+              -1px -1px 1px #ffffff;  text-align: center;
   height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: -10%;
+  margin-right: -5%;
 }
 
 .skills-right-box h1,
@@ -134,4 +134,65 @@
   background-color: #fff;
   color: #000;
   box-shadow: inset 8px 8px 16px #bcbcbc, inset -8px -8px 16px #ffffff;
+}
+
+
+@media (max-width: 480px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .skills-layout {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .skills-row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr); /* show fewer columns on mobile */
+    max-width: 100%;
+    gap: 1rem;
+  }
+
+  .skills-right-box {
+    margin-right: 0;
+    width: 100%;
+    height: auto;
+    padding: 15px;
+  }
+
+  .skills-section h2 {
+    font-size: 1.2rem;
+    padding: 8px 16px;
+  }
+
+  .skills-heading {
+    text-align: center;
+  }
+
+  .download-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .skill-card {
+    width: 45px;
+    height: 45px;
+  }
+
+  .skill-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .skill-name {
+    font-size: 13px;
+  }
 }

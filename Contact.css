@@ -5,7 +5,7 @@
   color: #000;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -22,23 +22,27 @@
 }
 
 .contact-form {
-  width: 100%;
+  width: 90%;       /* ✅ not 100% to allow slight margins */
   max-width: 600px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-top: 4%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+
 .input {
+  width: 100%; /* ✅ ensure input stretches fully */
   padding: 12px 16px;
   font-size: 14px;
   background: #d7d7d7;
   color: #000;
   border: none;
   border-radius: 12px;
-  box-shadow: 4px 4px 8px #bcbcbc,
-              -2px -2px 2px #ffffff;
+  box-shadow: 4px 4px 8px #bcbcbc, -2px -2px 2px #ffffff;
+  box-sizing: border-box; /* ✅ include padding inside width */
 }
 .input:hover{
    box-shadow: inset 8px 8px 16px #bcbcbc,
@@ -119,4 +123,22 @@
   box-shadow: inset 8px 8px 16px #bcbcbc,
               inset -8px -8px 16px #ffffff;
   color: #04d1ec;
+}
+@m@media (max-width: 768px) {
+  .contact-form {
+    width: 90%;
+    padding: 0 1rem;
+  }
+
+  .input {
+    font-size: 14px;
+    padding: 12px;
+    width: 100%; /* ✅ force full width */
+  }
+
+  .neumorphic-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
 }
