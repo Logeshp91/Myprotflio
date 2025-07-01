@@ -1,0 +1,143 @@
+.projects-section {
+  background-color: #d7d7d7;
+  padding: 40px;
+  min-height: 100vh;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.projects-section h2 {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  background-color: #d7d7d7;
+  color: #000;
+  margin-top: 4%;
+      box-shadow: 1px 1px 1px #bcbcbc,
+              -1px -1px 1px #ffffff;
+              border-radius: 25px;
+}
+
+.toggle-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 40px;
+}
+
+.toggle-container {
+  background: #d7d7d7;
+  border-radius: 30px;
+  padding: 10px;
+  display: flex;
+  box-shadow: 8px 8px 16px #bcbcbc, -8px -8px 16px #ffffff;
+  gap: 1rem;
+}
+
+.toggle-button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 20px;
+  background: #d7d7d7;
+  box-shadow: 8px 8px 16px #bcbcbc, -8px -8px 16px #ffffff;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.toggle-button.active {
+  box-shadow: inset 8px 8px 16px #bcbcbc, inset -8px -8px 16px #ffffff;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  width: 100%;
+}
+
+.project-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.project-text {
+  flex: 1;
+  padding-left: 2rem;
+  text-align: left;
+}
+
+.project-text h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.carousel-wrapper {
+  flex: 2;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  animation: scroll-left 15s linear infinite;
+  gap: 1.5rem;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+}
+
+.phone-frame {
+  width: 180px;
+  height: 400px;
+  border-radius: 30px;
+  border: 10px solid #000;
+  overflow: hidden;
+  background: #000;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .project-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .carousel-wrapper {
+    max-width: 100%;
+  }
+
+  .phone-frame {
+    width: 150px;
+    height: 320px;
+  }
+
+  .project-text {
+    padding: 0;
+    text-align: center;
+  }
+}

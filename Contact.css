@@ -1,0 +1,122 @@
+.contact-section {
+  background-color: #d7d7d7;
+  min-height: 90vh;
+  padding: 40px 0 0 0; 
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+
+.contact-section h2 {
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  background-color: #d7d7d7;
+  color: #000;
+  box-shadow:1px 1px 1px #bcbcbc,
+              -1px -1px 1px #ffffff;
+              border-radius: 25px;
+
+}
+
+.contact-form {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 4%;
+}
+
+.input {
+  padding: 12px 16px;
+  font-size: 14px;
+  background: #d7d7d7;
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 4px 4px 8px #bcbcbc,
+              -2px -2px 2px #ffffff;
+}
+.input:hover{
+   box-shadow: inset 8px 8px 16px #bcbcbc,
+              inset -8px -8px 16px #ffffff;
+}
+.name-input {
+  border-radius: 4px;
+}
+.email-input {
+  border-radius: 4px;
+}
+.phone-input {
+  border-radius: 4px;
+}
+.message-input {
+  border-radius: 4px;
+  min-height: 100px;
+  resize: vertical;
+}
+.neumorphic-button {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 0.5rem;
+  background: #d7d7d7;
+  border: none;
+  padding: 10px 16px; 
+  font-size: 16px;
+  border-radius: 12px;
+  box-shadow: 8px 8px 16px #bcbcbc,
+              -4px -4px 8px #000000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-weight: bold;
+  color: #000000;
+  margin-top: 20px;
+  text-align: center;
+  height: 44px;
+  width:20%
+}
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* ✅ centers horizontally */
+  align-items: center;     /* optional: vertical centering */
+}
+.neumorphic-button:hover {
+  box-shadow: inset 8px 8px 16px #bcbcbc,
+              inset -8px -8px 16px #ffffff;
+}
+.contact-footer {
+  width: 100%;
+  background-color: #000;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-button {
+  border: none;
+  padding: 14px;
+  border-radius: 5%;
+  padding: 0.5rem 1rem;
+    box-shadow: 4px 4px 8px #bcbcbc,
+              -2px -2px 2px #000000;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  color:#ffffff ;
+}
+
+.social-button:hover {
+  box-shadow: inset 8px 8px 16px #bcbcbc,
+              inset -8px -8px 16px #ffffff;
+  color: #04d1ec;
+}
