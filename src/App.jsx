@@ -1,4 +1,4 @@
-import { useEffect, useState,useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import './App.css';
 import CodeIcon from '@mui/icons-material/Code';
@@ -8,6 +8,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import Info from '@mui/icons-material/Info';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import PhoneIcon from '@mui/icons-material/Phone';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Skills from './Skills';
@@ -16,126 +17,127 @@ import Projects from './Projects';
 import myphoto from './assets/myphoto1.jpg';
 import Highlights from './Highlights';
 
+
 function App() {
   const [activeSection, setActiveSection] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-const navRef = useRef(null);
-const toggleRef = useRef(null);
-const clickListenerTimeout = useRef(null);
+  const navRef = useRef(null);
+  const toggleRef = useRef(null);
+  const clickListenerTimeout = useRef(null);
 
 
-const toggleMobileMenu = () => {
-  const willOpen = !isMobileMenuOpen;
+  const toggleMobileMenu = () => {
+    const willOpen = !isMobileMenuOpen;
 
-  setIsMobileMenuOpen(willOpen);
+    setIsMobileMenuOpen(willOpen);
 
-  setTimeout(() => {
-    if (willOpen) {
-      window.addEventListener('click', handleClickOutside);
-    } else {
-      window.removeEventListener('click', handleClickOutside);
-    }
-  }, 0);
-};
-
-
-const handleClickOutside = (event) => {
-  if (
-    navRef.current &&
-    toggleRef.current &&
-    !navRef.current.contains(event.target) &&
-    !toggleRef.current.contains(event.target)
-  ) {
-    setIsMobileMenuOpen(false);
-    window.removeEventListener('click', handleClickOutside); // remove listener once used
-  }
-};
-
-useEffect(() => {
-const handleScroll = () => {
-  const sections = ['about', 'skills', 'highlights', 'projects', 'contact'];
-  const headerHeight = 80;
-
-  let currentSection = '';
-  const buffer = window.innerHeight * 0.2; // Allow early activation
-
-  for (let section of sections) {
-    const el = document.getElementById(section);
-    if (el) {
-      const rect = el.getBoundingClientRect();
-      if (rect.top <= headerHeight + buffer && rect.bottom >= headerHeight + buffer) {
-        currentSection = section;
-        break; // Exit early on first match
+    setTimeout(() => {
+      if (willOpen) {
+        window.addEventListener('click', handleClickOutside);
+      } else {
+        window.removeEventListener('click', handleClickOutside);
       }
-    }
-  }
-
-  if (currentSection && currentSection !== activeSection) {
-    setActiveSection(currentSection);
-  }
-
-  // Close mobile menu on scroll
-  if (isMobileMenuOpen) {
-    setIsMobileMenuOpen(false);
-    window.removeEventListener('click', handleClickOutside);
-  }
-};
-
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-
-  return () => {
-    window.removeEventListener('scroll', handleScroll);
-    window.removeEventListener('click', handleClickOutside);
-    clearTimeout(clickListenerTimeout.current);
+    }, 0);
   };
-}, [activeSection, isMobileMenuOpen]);
+
+
+  const handleClickOutside = (event) => {
+    if (
+      navRef.current &&
+      toggleRef.current &&
+      !navRef.current.contains(event.target) &&
+      !toggleRef.current.contains(event.target)
+    ) {
+      setIsMobileMenuOpen(false);
+      window.removeEventListener('click', handleClickOutside); // remove listener once used
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['about', 'skills', 'highlights', 'projects', 'contact'];
+      const headerHeight = 80;
+
+      let currentSection = '';
+      const buffer = window.innerHeight * 0.2; // Allow early activation
+
+      for (let section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= headerHeight + buffer && rect.bottom >= headerHeight + buffer) {
+            currentSection = section;
+            break; // Exit early on first match
+          }
+        }
+      }
+
+      if (currentSection && currentSection !== activeSection) {
+        setActiveSection(currentSection);
+      }
+
+      // Close mobile menu on scroll
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+        window.removeEventListener('click', handleClickOutside);
+      }
+    };
+
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('click', handleClickOutside);
+      clearTimeout(clickListenerTimeout.current);
+    };
+  }, [activeSection, isMobileMenuOpen]);
 
   return (
     <div className="full-screen">
 
       <div className="header">
-<div className="mobile-menu-toggle" onClick={toggleMobileMenu} ref={toggleRef}>
-  {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
-</div>
+        <div className="mobile-menu-toggle" onClick={toggleMobileMenu} ref={toggleRef}>
+          {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+        </div>
 
-<div className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`} ref={navRef}>
-    <a
-    href="#about"
-    className={activeSection === 'about' ? 'active' : ''}
-    onClick={() => setIsMobileMenuOpen(false)} // 👈 close menu
-  >
-    <Info style={{ fontSize: 20 }} /> About
-  </a>
-  <a
-    href="#skills"
-    className={activeSection === 'skills' ? 'active' : ''}
-    onClick={() => setIsMobileMenuOpen(false)}
-  >
-    <BuildIcon style={{ fontSize: 20 }} /> Skills
-  </a>
-  <a
-    href="#highlights"
-    className={activeSection === 'highlights' ? 'active' : ''}
-    onClick={() => setIsMobileMenuOpen(false)}
-  >
-    <CodeIcon style={{ fontSize: 20 }} /> Highlights
-  </a>
-  <a
-    href="#projects"
-    className={activeSection === 'projects' ? 'active' : ''}
-    onClick={() => setIsMobileMenuOpen(false)}
-  >
-    <CodeIcon style={{ fontSize: 20 }} /> Projects
-  </a>
-  <a
-    href="#contact"
-    className={activeSection === 'contact' ? 'active' : ''}
-    onClick={() => setIsMobileMenuOpen(false)}
-  >
-    <ContactMailIcon style={{ fontSize: 20 }} /> Contact
-  </a>
-</div>
+        <div className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`} ref={navRef}>
+          <a
+            href="#about"
+            className={activeSection === 'about' ? 'active' : ''}
+            onClick={() => setIsMobileMenuOpen(false)} // 👈 close menu
+          >
+            <Info style={{ fontSize: 20 }} /> About
+          </a>
+          <a
+            href="#skills"
+            className={activeSection === 'skills' ? 'active' : ''}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <BuildIcon style={{ fontSize: 20 }} /> Skills
+          </a>
+          <a
+            href="#highlights"
+            className={activeSection === 'highlights' ? 'active' : ''}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <CodeIcon style={{ fontSize: 20 }} /> Highlights
+          </a>
+          <a
+            href="#projects"
+            className={activeSection === 'projects' ? 'active' : ''}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <CodeIcon style={{ fontSize: 20 }} /> Projects
+          </a>
+          <a
+            href="#contact"
+            className={activeSection === 'contact' ? 'active' : ''}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <ContactMailIcon style={{ fontSize: 20 }} /> Contact
+          </a>
+        </div>
 
       </div>
 
@@ -184,6 +186,13 @@ const handleScroll = () => {
                 rel="noopener noreferrer"
               >
                 <GitHubIcon style={{ fontSize: '18px' }} />
+              </a>
+              <a
+                href="tel:+919842749893"
+                className="icon-button"
+                aria-label="Call Logesh"
+              >
+                <PhoneIcon style={{ fontSize: '18px' }} />
               </a>
             </div>
           </div>
