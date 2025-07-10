@@ -3,14 +3,13 @@
   color: #000;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;  
   align-items: center;
 }
 
 .contact-section h2 {
   font-size: 1.5rem;
   color: #333;
-  margin-bottom: 9%;
   margin-top: 5%;
 
 }
@@ -104,7 +103,7 @@
   padding: 15px 0;
   display: flex;
   justify-content: center;
-  position: relative; /* not fixed */
+  position: relative; 
 }
 
 .social-buttons {
@@ -142,7 +141,6 @@
 .contact-section h2 {
   font-size: 1.5rem;
   color: #333;
-  margin-top: 25%;
 
 }
   .input {

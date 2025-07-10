@@ -29,14 +29,13 @@ const toggleMobileMenu = () => {
 
   setIsMobileMenuOpen(willOpen);
 
-  // Add/remove outside click listener dynamically
   setTimeout(() => {
     if (willOpen) {
       window.addEventListener('click', handleClickOutside);
     } else {
       window.removeEventListener('click', handleClickOutside);
     }
-  }, 0); // Add after the current call stack
+  }, 0);
 };
 
 
@@ -53,34 +52,35 @@ const handleClickOutside = (event) => {
 };
 
 useEffect(() => {
-  const handleScroll = () => {
-    const sections = ['about', 'skills', 'highlights', 'projects', 'contact'];
-    const headerHeight = 80;
-    let closestSection = null;
-    let minDistance = Infinity;
+const handleScroll = () => {
+  const sections = ['about', 'skills', 'highlights', 'projects', 'contact'];
+  const headerHeight = 80;
 
-    for (let section of sections) {
-      const el = document.getElementById(section);
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        const offset = Math.abs(rect.top - headerHeight);
-        if (offset < minDistance) {
-          minDistance = offset;
-          closestSection = section;
-        }
+  let currentSection = '';
+  const buffer = window.innerHeight * 0.2; // Allow early activation
+
+  for (let section of sections) {
+    const el = document.getElementById(section);
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= headerHeight + buffer && rect.bottom >= headerHeight + buffer) {
+        currentSection = section;
+        break; // Exit early on first match
       }
     }
+  }
 
-    if (closestSection && closestSection !== activeSection) {
-      setActiveSection(closestSection);
-    }
+  if (currentSection && currentSection !== activeSection) {
+    setActiveSection(currentSection);
+  }
 
-    // Close menu on scroll
-    if (isMobileMenuOpen) {
-      setIsMobileMenuOpen(false);
-      window.removeEventListener('click', handleClickOutside);
-    }
-  };
+  // Close mobile menu on scroll
+  if (isMobileMenuOpen) {
+    setIsMobileMenuOpen(false);
+    window.removeEventListener('click', handleClickOutside);
+  }
+};
+
 
   window.addEventListener('scroll', handleScroll, { passive: true });
 
