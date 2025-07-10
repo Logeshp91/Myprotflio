@@ -125,6 +125,10 @@
   font-weight: bold;
   box-shadow: 4px 4px 8px #bcbcbc, -4px -4px 8px #000000;
   transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  outline: none;
 }
 
 .download-btn:hover {
