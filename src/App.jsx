@@ -8,6 +8,8 @@ import EmailIcon from '@mui/icons-material/Email';
 import Info from '@mui/icons-material/Info';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import Skills from './Skills';
 import Contact from '../Contact';
 import Projects from './Projects';
@@ -16,64 +18,80 @@ import Highlights from './Highlights';
 
 function App() {
   const [activeSection, setActiveSection] = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-useEffect(() => {
-  const handleScroll = () => {
-    const sections = ['about', 'skills', 'highlights', 'projects', 'contact'];
-    const headerHeight = 80;
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
 
-    for (let section of sections) {
-      const el = document.getElementById(section);
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        const isVisible = rect.top <= headerHeight + 10 && rect.bottom >= headerHeight + 10;
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['about', 'skills', 'highlights', 'projects', 'contact'];
+      const headerHeight = 80;
+      let closestSection = null;
+      let minDistance = Infinity;
 
-        if (isVisible) {
-          if (activeSection !== section) {
-            setActiveSection(section);
+      for (let section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const offset = Math.abs(rect.top - headerHeight);
+          if (offset < minDistance) {
+            minDistance = offset;
+            closestSection = section;
           }
-          break; // stop at the first visible section
         }
       }
-    }
-  };
+      if (closestSection && closestSection !== activeSection) {
+        setActiveSection(closestSection);
+      }
+    };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll(); // trigger once on mount
+    const timeoutId = setTimeout(() => {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+    }, 100);
 
-  return () => {
-    window.removeEventListener('scroll', handleScroll);
-  };
-}, [activeSection]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, [activeSection]);
 
   return (
     <div className="full-screen">
+      {/* ✅ Navigation Header */}
       <div className="header">
-        <a href="#about" className={activeSection === 'about' ? 'active' : ''}>
-          <Info style={{ fontSize: 20 }} /> About
-        </a>
-        <a href="#skills" className={activeSection === 'skills' ? 'active' : ''}>
-          <BuildIcon style={{ fontSize: 20 }} /> Skills
-        </a>
-        <a href="#highlights" className={activeSection === 'highlights' ? 'active' : ''}>
-          <CodeIcon style={{ fontSize: 20 }} /> Highlights
-        </a>
-        <a href="#projects" className={activeSection === 'projects' ? 'active' : ''}>
-          <CodeIcon style={{ fontSize: 20 }} /> Projects
-        </a>
-        <a href="#contact" className={activeSection === 'contact' ? 'active' : ''}>
-          <ContactMailIcon style={{ fontSize: 20 }} /> Contact
-        </a>
+        <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
+          {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+        </div>
+
+        <div className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`}>
+          <a href="#about" className={activeSection === 'about' ? 'active' : ''}>
+            <Info style={{ fontSize: 20 }} /> About
+          </a>
+          <a href="#skills" className={activeSection === 'skills' ? 'active' : ''}>
+            <BuildIcon style={{ fontSize: 20 }} /> Skills
+          </a>
+          <a href="#highlights" className={activeSection === 'highlights' ? 'active' : ''}>
+            <CodeIcon style={{ fontSize: 20 }} /> Highlights
+          </a>
+          <a href="#projects" className={activeSection === 'projects' ? 'active' : ''}>
+            <CodeIcon style={{ fontSize: 20 }} /> Projects
+          </a>
+          <a href="#contact" className={activeSection === 'contact' ? 'active' : ''}>
+            <ContactMailIcon style={{ fontSize: 20 }} /> Contact
+          </a>
+        </div>
       </div>
 
-      {/* About Section */}
+      {/* ✅ About Section */}
       <div className="main-content" id="about">
         <div className="about-container">
           <div className="text-section">
             <h2>Hi, I am</h2>
             <h1>Logesh</h1>
 
-            {/* Animated Front-End Developer */}
             <div className="universe-title">
               {["Front-end", "Developer"].map((word, index) => (
                 <motion.span
@@ -95,12 +113,7 @@ useEffect(() => {
 
             {/* Social Buttons */}
             <div className="button-group">
-              <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=logesh1910@gmail.com"
-                className="icon-button"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="mailto:logesh1910@gmail.com" className="icon-button">
                 <EmailIcon style={{ fontSize: '18px' }} />
               </a>
               <a
@@ -121,35 +134,25 @@ useEffect(() => {
               </a>
             </div>
           </div>
-<div className="image-section">
-  <div className="image-wrapper">
-    <img src={myphoto} alt="Logesh" />
-  </div>
-</div>
+
+          <div className="image-section">
+            <div className="image-wrapper">
+              <img src={myphoto} alt="Logesh" />
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Summary Section */}
       <div className="black-section">
-        I am a skilled Front-End Developer with 2+ years of experience in creating high-quality mobile applications for Android
-        and iOS using React Native, HTML, CSS, and JavaScript. I specialize in developing responsive and user-centric
-        interfaces that deliver exceptional user experiences. My background in mobile application development equips me to
-        bring innovative solutions and contribute effectively to the team’s success.
+        I am a skilled Front-End Developer with 2+ years of experience in creating high-quality mobile applications for Android and iOS using React Native, HTML, CSS, and JavaScript. I specialize in developing responsive and user-centric interfaces that deliver exceptional user experiences. My background in mobile application development equips me to bring innovative solutions and contribute effectively to the team’s success.
       </div>
 
       {/* Other Sections */}
-  <div id="skills">
-  <Skills />
-</div>
-<div id="highlights">
-  <Highlights />
-</div>
-<div id="projects" >
-  <Projects />
-</div>
-<div id="contact" >
-  <Contact />
-</div>
+      <div id="skills"><Skills /></div>
+      <div id="highlights"><Highlights /></div>
+      <div id="projects"><Projects /></div>
+      <div id="contact"><Contact /></div>
     </div>
   );
 }

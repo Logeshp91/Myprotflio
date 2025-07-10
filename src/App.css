@@ -4,7 +4,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px; /* Adjusts for fixed header */
+  scroll-padding-top: 80px; /* Adjusts for fixed header */
 }
 
 
@@ -28,7 +28,18 @@ body, #root {
   flex-direction: row;
   width: 100%;
 }
-
+.mobile-menu-toggle {
+  display: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .header {
   position: fixed;
   top: 0;
@@ -217,7 +228,7 @@ body, #root {
     object-fit: cover;
     margin-right: 50%;
     margin-bottom: 10%;
-    margin-top: 40%;
+    margin-top: 70%;
   }
 
   .text-section {

@@ -18,7 +18,6 @@ import spo4 from './assets/spo4.png';
 import spo5 from './assets/spo5.png';
 import spo2 from './assets/spo2.png';
 
-// Project image list
 const projectScreenshots = [
   {
     title: 'CR Poultry Farms',
