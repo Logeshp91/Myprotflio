@@ -247,6 +247,14 @@ body, #root {
     align-self: center;
     justify-content: center;
   }
+ 
+  #about,
+  #skills,
+  #highlights,
+  #projects,
+  #contact {
+    scroll-margin-top: 120px; /* match mobile header height */
+  }
 
   .header {
     justify-content: flex-end;

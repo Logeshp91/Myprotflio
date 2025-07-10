@@ -24,39 +24,63 @@ function App() {
     setIsMobileMenuOpen((prev) => !prev);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['about', 'skills', 'highlights', 'projects', 'contact'];
-      const headerHeight = 80;
-      let closestSection = null;
-      let minDistance = Infinity;
+useEffect(() => {
+  const handleScroll = () => {
+    const sections = ['about', 'skills', 'highlights', 'projects', 'contact'];
+    const headerHeight = 80;
+    let closestSection = null;
+    let minDistance = Infinity;
 
-      for (let section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          const offset = Math.abs(rect.top - headerHeight);
-          if (offset < minDistance) {
-            minDistance = offset;
-            closestSection = section;
-          }
+    for (let section of sections) {
+      const el = document.getElementById(section);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        const offset = Math.abs(rect.top - headerHeight);
+        if (offset < minDistance) {
+          minDistance = offset;
+          closestSection = section;
         }
       }
-      if (closestSection && closestSection !== activeSection) {
-        setActiveSection(closestSection);
-      }
-    };
+    }
 
-    const timeoutId = setTimeout(() => {
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      handleScroll();
-    }, 100);
+    if (closestSection && closestSection !== activeSection) {
+      setActiveSection(closestSection);
+    }
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeoutId);
-    };
-  }, [activeSection]);
+    // 👇 Close mobile menu on scroll
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const handleClickOutside = (event) => {
+    const navMenu = document.querySelector('.nav-links');
+    const toggleButton = document.querySelector('.mobile-menu-toggle');
+
+    // Close only if the menu is open and click is outside menu and toggle button
+    if (
+      isMobileMenuOpen &&
+      navMenu &&
+      !navMenu.contains(event.target) &&
+      !toggleButton.contains(event.target)
+    ) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const timeoutId = setTimeout(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('click', handleClickOutside);
+    handleScroll();
+  }, 100);
+
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener('click', handleClickOutside);
+    clearTimeout(timeoutId);
+  };
+}, [activeSection, isMobileMenuOpen]);
+
 
   return (
     <div className="full-screen">
