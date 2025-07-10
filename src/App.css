@@ -216,9 +216,7 @@ body, #root {
    position: fixed;    
      bottom:93%;
     right: 0.2rem;
-    z-index: 1100;
-
-
+    z-index: 1100; 
   }
 
    .nav-links {
@@ -228,7 +226,7 @@ body, #root {
     top: 64px;
     right: 0;
     height: auto;
-    width: 150px;
+    width: 120px;
     padding: 1rem 0;
     z-index: 1100;
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
@@ -244,11 +242,11 @@ body, #root {
     color: white;
     text-decoration: none;
     padding: 12px 20px;
-    text-align: left;
-    font-size: 12px;
-    width: 120px;
+    font-size: 10px;
+    width: 100px;
     border-bottom: 1px solid #222;
     align-self: center;
+    justify-content: center;
   }
 
   .mobile-menu-toggle {
