@@ -32,7 +32,6 @@
   text-align: left;
 }
 
-
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -125,7 +124,7 @@
   font-weight: bold;
   box-shadow: 4px 4px 8px #bcbcbc, -4px -4px 8px #000000;
   transition: all 0.3s ease;
-    -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   user-select: none;
   outline: none;
@@ -137,9 +136,7 @@
   box-shadow: inset 8px 8px 16px #bcbcbc, inset -8px -8px 16px #ffffff;
 }
 
-
 @media (max-width: 768px) {
-
   .skills-layout {
     flex-direction: column;
     align-items: center;

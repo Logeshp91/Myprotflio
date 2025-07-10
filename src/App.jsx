@@ -49,7 +49,7 @@ function App() {
       !toggleRef.current.contains(event.target)
     ) {
       setIsMobileMenuOpen(false);
-      window.removeEventListener('click', handleClickOutside); // remove listener once used
+      window.removeEventListener('click', handleClickOutside); 
     }
   };
 
@@ -59,7 +59,7 @@ function App() {
       const headerHeight = 80;
 
       let currentSection = '';
-      const buffer = window.innerHeight * 0.2; // Allow early activation
+      const buffer = window.innerHeight * 0.2; 
 
       for (let section of sections) {
         const el = document.getElementById(section);
@@ -67,7 +67,7 @@ function App() {
           const rect = el.getBoundingClientRect();
           if (rect.top <= headerHeight + buffer && rect.bottom >= headerHeight + buffer) {
             currentSection = section;
-            break; // Exit early on first match
+            break; 
           }
         }
       }
@@ -76,7 +76,6 @@ function App() {
         setActiveSection(currentSection);
       }
 
-      // Close mobile menu on scroll
       if (isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
         window.removeEventListener('click', handleClickOutside);
@@ -105,7 +104,7 @@ function App() {
           <a
             href="#about"
             className={activeSection === 'about' ? 'active' : ''}
-            onClick={() => setIsMobileMenuOpen(false)} // 👈 close menu
+            onClick={() => setIsMobileMenuOpen(false)} 
           >
             <Info style={{ fontSize: 20 }} /> About
           </a>

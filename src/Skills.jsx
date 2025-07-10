@@ -15,7 +15,7 @@ import androidos from './assets/androidos.svg';
 import xcode from './assets/xcode.svg';
 import Figma from './assets/figma.png';
 import reacthooks from './assets/reacthooks.png';
-import LogeshResume from './assets/LogeshResume.pdf';
+import LogeshResume from './assets/LogeshResumes.pdf';
 
 function Skills() {
   const ref = useRef(null);
