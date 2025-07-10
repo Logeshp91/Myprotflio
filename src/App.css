@@ -10,7 +10,7 @@ html {
 
 @media (max-width: 768px) {
   html {
-    scroll-padding-top: 120px; /* Taller header on mobile if wrapped */
+    scroll-padding-top: 10px;
   }
 }
 
