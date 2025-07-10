@@ -48,7 +48,8 @@
 
 .toggle-button.active {
   box-shadow: inset 8px 8px 16px #bcbcbc, inset -8px -8px 16px #ffffff;
-  touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+
   user-select: none;
   outline: none;
 }
