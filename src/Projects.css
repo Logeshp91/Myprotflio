@@ -48,6 +48,9 @@
 
 .toggle-button.active {
   box-shadow: inset 8px 8px 16px #bcbcbc, inset -8px -8px 16px #ffffff;
+  touch-action: manipulation;
+  user-select: none;
+  outline: none;
 }
 
 .projects-list {
