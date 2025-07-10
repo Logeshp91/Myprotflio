@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useRef } from 'react';
 import { motion } from 'framer-motion';
 import './App.css';
 import CodeIcon from '@mui/icons-material/Code';
@@ -19,10 +19,38 @@ import Highlights from './Highlights';
 function App() {
   const [activeSection, setActiveSection] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const navRef = useRef(null);
+const toggleRef = useRef(null);
+const clickListenerTimeout = useRef(null);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => !prev);
-  };
+
+const toggleMobileMenu = () => {
+  const willOpen = !isMobileMenuOpen;
+
+  setIsMobileMenuOpen(willOpen);
+
+  // Add/remove outside click listener dynamically
+  setTimeout(() => {
+    if (willOpen) {
+      window.addEventListener('click', handleClickOutside);
+    } else {
+      window.removeEventListener('click', handleClickOutside);
+    }
+  }, 0); // Add after the current call stack
+};
+
+
+const handleClickOutside = (event) => {
+  if (
+    navRef.current &&
+    toggleRef.current &&
+    !navRef.current.contains(event.target) &&
+    !toggleRef.current.contains(event.target)
+  ) {
+    setIsMobileMenuOpen(false);
+    window.removeEventListener('click', handleClickOutside); // remove listener once used
+  }
+};
 
 useEffect(() => {
   const handleScroll = () => {
@@ -47,51 +75,32 @@ useEffect(() => {
       setActiveSection(closestSection);
     }
 
-    // 👇 Close mobile menu on scroll
+    // Close menu on scroll
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
+      window.removeEventListener('click', handleClickOutside);
     }
   };
 
-  const handleClickOutside = (event) => {
-    const navMenu = document.querySelector('.nav-links');
-    const toggleButton = document.querySelector('.mobile-menu-toggle');
-
-    // Close only if the menu is open and click is outside menu and toggle button
-    if (
-      isMobileMenuOpen &&
-      navMenu &&
-      !navMenu.contains(event.target) &&
-      !toggleButton.contains(event.target)
-    ) {
-      setIsMobileMenuOpen(false);
-    }
-  };
-
-  const timeoutId = setTimeout(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('click', handleClickOutside);
-    handleScroll();
-  }, 100);
+  window.addEventListener('scroll', handleScroll, { passive: true });
 
   return () => {
     window.removeEventListener('scroll', handleScroll);
     window.removeEventListener('click', handleClickOutside);
-    clearTimeout(timeoutId);
+    clearTimeout(clickListenerTimeout.current);
   };
 }, [activeSection, isMobileMenuOpen]);
-
 
   return (
     <div className="full-screen">
 
       <div className="header">
-        <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
-          {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
-        </div>
+<div className="mobile-menu-toggle" onClick={toggleMobileMenu} ref={toggleRef}>
+  {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+</div>
 
-       <div className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`}>
-  <a
+<div className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`} ref={navRef}>
+    <a
     href="#about"
     className={activeSection === 'about' ? 'active' : ''}
     onClick={() => setIsMobileMenuOpen(false)} // 👈 close menu
