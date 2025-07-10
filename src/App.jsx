@@ -60,7 +60,7 @@ function App() {
 
   return (
     <div className="full-screen">
-      {/* ✅ Navigation Header */}
+
       <div className="header">
         <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
           {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
