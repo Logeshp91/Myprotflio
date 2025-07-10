@@ -66,23 +66,44 @@ function App() {
           {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
         </div>
 
-        <div className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`}>
-          <a href="#about" className={activeSection === 'about' ? 'active' : ''}>
-            <Info style={{ fontSize: 20 }} /> About
-          </a>
-          <a href="#skills" className={activeSection === 'skills' ? 'active' : ''}>
-            <BuildIcon style={{ fontSize: 20 }} /> Skills
-          </a>
-          <a href="#highlights" className={activeSection === 'highlights' ? 'active' : ''}>
-            <CodeIcon style={{ fontSize: 20 }} /> Highlights
-          </a>
-          <a href="#projects" className={activeSection === 'projects' ? 'active' : ''}>
-            <CodeIcon style={{ fontSize: 20 }} /> Projects
-          </a>
-          <a href="#contact" className={activeSection === 'contact' ? 'active' : ''}>
-            <ContactMailIcon style={{ fontSize: 20 }} /> Contact
-          </a>
-        </div>
+       <div className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`}>
+  <a
+    href="#about"
+    className={activeSection === 'about' ? 'active' : ''}
+    onClick={() => setIsMobileMenuOpen(false)} // 👈 close menu
+  >
+    <Info style={{ fontSize: 20 }} /> About
+  </a>
+  <a
+    href="#skills"
+    className={activeSection === 'skills' ? 'active' : ''}
+    onClick={() => setIsMobileMenuOpen(false)}
+  >
+    <BuildIcon style={{ fontSize: 20 }} /> Skills
+  </a>
+  <a
+    href="#highlights"
+    className={activeSection === 'highlights' ? 'active' : ''}
+    onClick={() => setIsMobileMenuOpen(false)}
+  >
+    <CodeIcon style={{ fontSize: 20 }} /> Highlights
+  </a>
+  <a
+    href="#projects"
+    className={activeSection === 'projects' ? 'active' : ''}
+    onClick={() => setIsMobileMenuOpen(false)}
+  >
+    <CodeIcon style={{ fontSize: 20 }} /> Projects
+  </a>
+  <a
+    href="#contact"
+    className={activeSection === 'contact' ? 'active' : ''}
+    onClick={() => setIsMobileMenuOpen(false)}
+  >
+    <ContactMailIcon style={{ fontSize: 20 }} /> Contact
+  </a>
+</div>
+
       </div>
 
       {/* ✅ About Section */}
@@ -91,7 +112,6 @@ function App() {
           <div className="text-section">
             <h2>Hi, I am</h2>
             <h1>Logesh</h1>
-
             <div className="universe-title">
               {["Front-end", "Developer"].map((word, index) => (
                 <motion.span

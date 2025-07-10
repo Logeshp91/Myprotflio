@@ -214,7 +214,6 @@ body, #root {
   .mobile-menu-toggle {
     display: block;
    position: fixed;    
-     bottom:93%;
     right: 0.2rem;
     z-index: 1100; 
   }
@@ -247,10 +246,6 @@ body, #root {
     border-bottom: 1px solid #222;
     align-self: center;
     justify-content: center;
-  }
-
-  .mobile-menu-toggle {
-    display: block;
   }
 
   .header {
