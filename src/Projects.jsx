@@ -183,7 +183,7 @@ const Projects = () => {
     initial="hidden"
     whileInView="visible"
     viewport={{ once: false, amount: 0.3 }}
-    transition={{ duration: 0.2 }}
+    transition={{ duration: 0.5 }}
   >
     <img src={img} alt={`Screenshot ${idx}`} className="phone-screen" />
   </motion.div>
