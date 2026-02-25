@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion,useInView } from 'framer-motion';
 import './App.css';
 import CodeIcon from '@mui/icons-material/Code';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
@@ -12,10 +12,11 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Skills from './Skills';
-import Contact from '../Contact';
+import Contact from './Contact';
 import Projects from './Projects';
-import myphoto from './assets/myphoto1.jpg';
+import myphoto from './assets/myphoto.jpeg';
 import Highlights from './Highlights';
+import LogeshResume from './assets/LogeshResumes.pdf';
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
   const navRef = useRef(null);
   const toggleRef = useRef(null);
   const clickListenerTimeout = useRef(null);
+   const ref = useRef(null);
+    const isInView = useInView(ref, { amount: 0.3 });
 
 
   const toggleMobileMenu = () => {
@@ -140,7 +143,6 @@ function App() {
 
       </div>
 
-      {/* ✅ About Section */}
       <div className="main-content" id="about">
         <div className="about-container">
           <div className="text-section">
@@ -193,7 +195,33 @@ function App() {
               >
                 <PhoneIcon style={{ fontSize: '18px' }} />
               </a>
+              
             </div>
+            {/* <motion.div
+          className="skills-right-box"
+          ref={ref}
+          initial={{ opacity: 0, x: 50 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ delay: 0.4, duration: 0.6, type: 'spring' }}
+        >
+          <h1>2</h1>
+          <h2>Years</h2>
+          <h3>Experience</h3> */}
+<motion.a
+  href={LogeshResume}
+  download
+  className="download-btn"
+  style={{marginLeft:"10px",fontSize:"26px"}}
+  animate={{ scale: [0.5, 0.7, 0.5] }}
+  transition={{
+    duration: 3,
+    repeat: Infinity,
+    ease: 'easeInOut'
+  }}
+>
+  Download CV
+</motion.a>
+        {/* </motion.div> */}
           </div>
 
           <div className="image-section">

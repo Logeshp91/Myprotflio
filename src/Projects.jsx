@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './Projects.css';
 import { motion, useInView } from 'framer-motion';
+import { Card } from 'react-bootstrap'; 
 import Project1 from './assets/login.jpeg';
 import Viewlinered from './assets/listviewred.jpeg';
 import listviewgreen from './assets/listviewgreen.jpeg';
@@ -17,8 +18,22 @@ import spo3 from './assets/spo3.png';
 import spo4 from './assets/spo4.png';
 import spo5 from './assets/spo5.png';
 import spo2 from './assets/spo2.png';
+import bisco1 from './assets/bisco1.png';
+import bisco2 from './assets/bisco2.png';
+import bisco3 from './assets/bisco3.png';
+import bisco4 from './assets/bisco4.png';
+import bisco5 from './assets/bisco5.png';
+import bisco6 from './assets/bisco6.png';
+import bisco7 from './assets/bisco7.png';
+import bisco8 from './assets/bisco8.png';
+import bisco9 from './assets/bisco9.png';
 
 const projectScreenshots = [
+  {
+    title: 'Bisco Siddhi',
+    images: [bisco1, bisco2, bisco3, bisco6, bisco8 ,bisco7, bisco4, bisco5, bisco9],
+    description: 'A sales person tracking mobile application where sales representatives visit customers, record visit details, update order information, and manage daily activity reports in real time.'
+  },
   {
     title: 'CR Poultry Farms',
     images: [Project1, listviewgreen, Viewlinered, greenviewlinerun, viewlinerun, placements],
@@ -182,9 +197,27 @@ const Projects = () => {
 
       {/* ✅ OVERVIEW TAB */}
       {activeTab === 'Overview' && (
-        <div className="overview-section">
-          <AnimatedCard direction="up" delay={0}>
-            <h3>CR Poultry Farms</h3>
+        <div className="overview-section" style={{gap:"70px"}}>
+     <Card direction="up" delay={0} className='neumorphic-box-left'>
+            <h3 style={{textAlign:"center"}}>Bisco Siddhi</h3>
+<ul className="overview-list">
+  <li>Developed a cross-platform mobile application using React Native for Sales Person Tracking.</li>
+  <li>Implemented continuous background GPS tracking to capture sales person latitude and longitude every minute, even when the app is minimized or terminated, with offline storage and auto-sync when internet connectivity is restored.</li> 
+  <li>Integrated real-time alerts and notifications for scheduled and completed customer visits.</li>
+  <li>Enabled sales representatives to create customers and log detailed visit reports, including customer requirements and feedback.</li>
+  <li>Integrated Firebase Cloud Messaging (FCM) for push notifications.</li>
+  <li>Implemented sales order generation with quantity entry and multiple billing type options.</li>
+  <li>Developed delivery tracking to record delivered products along with quantity details by sales representatives.</li>
+  <li>Implemented customer outstanding balance tracking with detailed product-level and invoice-level reporting.</li>
+  <li>Designed an intuitive and user-friendly UI/UX to ensure ease of use for field sales teams.</li>
+</ul>
+            <p><strong>Tools & Technologies:</strong> Javascript, React Native,Native Android, HTML5, CSS, Redux, GitHub, VS Code, Android SDK, Xcode</p>
+            <p><strong>Design Stack:</strong> Figma, Mobile-first UI, responsive layout, and modern visuals.</p>
+          </Card>
+
+               <Card direction="up" delay={0} className='neumorphic-box-left'>
+
+            <h3 style={{textAlign:"center"}} >CR Poultry Farms</h3>
             <ul className="overview-list">
               <li>Developed a cross-platform mobile app using React Native for poultry farm health monitoring.</li>
               <li>Integrated features to track daily bird health, vaccinations, and medication schedules.</li>
@@ -197,10 +230,10 @@ const Projects = () => {
             </ul>
             <p><strong>Tools & Technologies:</strong> Javascript, React Native, React JS, HTML5, CSS, Redux, GitHub, VS Code, Android SDK, Xcode</p>
             <p><strong>Design Stack:</strong> Figma, Mobile-first UI, responsive layout, and modern visuals.</p>
-          </AnimatedCard>
+          </Card>
 
-          <AnimatedCard direction="left" delay={0.2}>
-            <h3>Online Patta Chitta Application</h3>
+     <Card direction="up" delay={0}className='neumorphic-box-left'>
+            <h3 style={{textAlign:"center"}} >Online Patta Chitta Application</h3>
             <ul className="overview-list">
               <li>Developed a mobile app using React Native to access Tamil Nadu land record services like Patta, Chitta, and EC using WebView.</li>
               <li>Embedded official government portals for a seamless, app-like experience inside the app.</li>
@@ -213,10 +246,11 @@ const Projects = () => {
             </ul>
             <p><strong>Tools & Technologies:</strong> React Native, WebView, JavaScript, GitHub, Android SDK, VS Code</p>
             <p><strong>Design Stack:</strong> Clean minimal UI, responsive mobile layouts, government service embedding.</p>
-          </AnimatedCard>
+          </Card>
 
-          <AnimatedCard direction="right" delay={0.4}>
-            <h3>SpoEvents</h3>
+               <Card direction="up" delay={0} className='neumorphic-box-left'>
+
+            <h3 style={{textAlign:"center"}} >SpoEvents</h3>
             <ul className="overview-list">
               <li>Developed a mobile app using React Native to manage sports event registrations across multiple categories.</li>
               <li>Allowed users to register, select one or more sports, and receive instant confirmation and tracking.</li>
@@ -229,7 +263,7 @@ const Projects = () => {
             </ul>
             <p><strong>Tools & Technologies:</strong> React Native, JavaScript, HTML, CSS, GitHub, Android SDK, VS Code</p>
             <p><strong>Design Stack:</strong> Scrollable card-based UI, form-first flow, responsive layout, modern visuals</p>
-          </AnimatedCard>
+          </Card>
         </div>
       )}
     </div>

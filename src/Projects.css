@@ -171,6 +171,15 @@
   padding-left: 0;
   margin-bottom: 1.5rem;
 }
+.card.neumorphic-box-left {
+  text-align: left;
+  padding: 20px;
+  border-radius: 30px !important;
+  box-shadow: inset 20px 20px 24px #bcbcbc,
+              inset -8px -8px 16px #ffffff !important;
+  background-color: #d7d7d7 !important;
+  border: none !important;
+}
 
 .overview-list li {
   position: relative;
@@ -198,6 +207,8 @@
   font-size: 1rem;
   line-height: 1.6;
 }
+
+
 
 /* ✅ Mobile Responsive Fix */
 @media (max-width: 768px) {
@@ -256,6 +267,8 @@
   .overview-section {
     padding: 1rem;
   }
+}
+  
 
   .overview-card {
     padding: 1rem;

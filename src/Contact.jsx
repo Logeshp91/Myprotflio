@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import './Contact.css';
 import { motion, useInView } from 'framer-motion';
+import emailjs from '@emailjs/browser';
+
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TelegramIcon from '@mui/icons-material/Telegram';
@@ -9,6 +11,26 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 const Contact = () => {
   const formRef = useRef(null);
   const isInView = useInView(formRef, { amount: 0.2 });
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        'service_3zomiwg',
+        'template_9auna9b',
+        formRef.current,
+        'EeQM-MN1XzSQxMEZx'
+      )
+      .then(() => {
+        alert('Message Sent Successfully ✅');
+        formRef.current.reset();
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Failed to send message ❌');
+      });
+  };
 
   const iconVariants = {
     visible: {
@@ -38,7 +60,6 @@ const Contact = () => {
 
   return (
     <div className="contact-section">
-      {/* Animated heading for consistency */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -47,21 +68,31 @@ const Contact = () => {
         Contact
       </motion.h2>
 
-      <div className="contact-form" ref={formRef}>
-        {['Enter your name', 'Enter your email', 'Phone number'].map((placeholder, i) => (
+      {/* 🔥 IMPORTANT: Changed div → form */}
+      <form className="contact-form" ref={formRef} onSubmit={sendEmail}>
+        {[
+          { placeholder: 'Enter your name', type: 'text', name: 'user_name' },
+          { placeholder: 'Enter your email', type: 'email', name: 'user_email' },
+          { placeholder: 'Phone number', type: 'tel', name: 'phone' }
+        ].map((field, i) => (
           <motion.input
             key={i}
-            type={i === 1 ? 'email' : i === 2 ? 'tel' : 'text'}
-            placeholder={placeholder}
-            className={`input ${i === 0 ? 'name-input' : i === 1 ? 'email-input' : 'phone-input'}`}
+            type={field.type}
+            name={field.name}
+            placeholder={field.placeholder}
+            required={i !== 2}
+            className="input"
             variants={inputVariants}
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
             custom={i}
           />
         ))}
+
         <motion.textarea
+          name="message"
           placeholder="Your message"
+          required
           className="input message-input"
           variants={inputVariants}
           initial="hidden"
@@ -75,9 +106,12 @@ const Contact = () => {
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ delay: 0.9, duration: 0.6, type: 'spring', stiffness: 120 }}
         >
-          <button className="neumorphic-button">Submit</button>
+          {/* 🔥 Important: type="submit" */}
+          <button type="submit" className="neumorphic-button">
+            Submit
+          </button>
         </motion.div>
-      </div>
+      </form>
 
       <footer className="contact-footer">
         <div className="social-buttons">
@@ -95,7 +129,7 @@ const Contact = () => {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="social-button no-hover-zoom"
+              className="social-button"
               variants={iconVariants}
               initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}

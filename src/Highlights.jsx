@@ -4,6 +4,7 @@ import './Hightlights.css';
 
 const highlightsData = [
   { title: 'Efficient Code Sharing', description: 'Leveraged React Native’s component-based architecture to reduce feature deployment time and streamline workflows, resulting in fewer development hours.' },
+  { title: 'Background Location Tracking', description: 'Implemented continuous background location tracking to capture latitude and longitude every minute, even when the app is terminated. Location data is stored offline and synchronized automatically when internet connectivity is restored.' },
   { title: 'UI/UX Design', description: 'Designed and executed intuitive interfaces, which led to a noticeable increase in user engagement and improved user satisfaction based on feedback.' },
   { title: 'Front-End Technologies', description: 'Utilized HTML, CSS, and React Native to develop responsive, high-performance applications, contributing to fewer user complaints related to loading speed.' },
   { title: 'Package Management (NPM)', description: 'Managed and optimized React Native packages, reducing load time and enhancing app stability, as evidenced by a decrease in reported crashes.' },
@@ -36,7 +37,7 @@ const Highlights = () => {
           const initial = getInitialByIndex(index);
 
           return (
-            <motion.li
+            <li
               key={index}
               className="highlight-item"
               initial={{ opacity: 0, ...initial }}
@@ -47,7 +48,7 @@ const Highlights = () => {
               <motion.h3
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 2 }}
+                transition={{ delay: 0, duration: 1 }}
                 viewport={{ once: false }}
               >
                 {item.title}
@@ -56,12 +57,12 @@ const Highlights = () => {
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 1 }}
+                transition={{ delay: 0, duration: 1 }}
                 viewport={{ once: false }}
               >
                 {item.description}
               </motion.p>
-            </motion.li>
+            </li>
           );
         })}
       </ul>

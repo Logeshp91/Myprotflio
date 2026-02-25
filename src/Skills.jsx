@@ -15,7 +15,7 @@ import androidos from './assets/androidos.svg';
 import xcode from './assets/xcode.svg';
 import Figma from './assets/figma.png';
 import reacthooks from './assets/reacthooks.png';
-import LogeshResume from './assets/LogeshResumes.pdf';
+
 
 function Skills() {
   const ref = useRef(null);
@@ -95,30 +95,6 @@ function Skills() {
             </div>
           ))}
         </div>
-
-        <motion.div
-          className="skills-right-box"
-          initial={{ opacity: 0, x: 50 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ delay: 0.4, duration: 0.6, type: 'spring' }}
-        >
-          <h1>2</h1>
-          <h2>Years</h2>
-          <h3>Experience</h3>
-<motion.a
-  href={LogeshResume}
-  download
-  className="download-btn"
-  animate={{ scale: [0.5, 1, 0.5] }}
-  transition={{
-    duration: 3,
-    repeat: Infinity,
-    ease: 'easeInOut'
-  }}
->
-  Download CV
-</motion.a>
-        </motion.div>
       </div>
     </div>
   );

@@ -204,6 +204,23 @@ body, #root {
   box-shadow: inset 4px 4px 8px #bcbcbc, inset -4px -4px 8px #ffffff;
   color: #04d1ec;
 }
+.download-btn {
+  display: inline-block;
+  padding: 6px 16px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 12px;
+  
+  box-shadow: 4px 4px 8px #bcbcbc, -4px -4px 8px #000000;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+
 
 /* ✅ MOBILE RESPONSIVE */
 @media (max-width: 768px) {
@@ -211,6 +228,15 @@ body, #root {
     flex-direction: column-reverse;
   }
 @media (max-width: 768px) {
+  .download-btn {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    max-width: 350px;
+    margin: 1.5rem auto;
+    text-align: center;
+    padding: 10px 20px;
+  }
   .mobile-menu-toggle {
     display: block;
    position: fixed;    
@@ -313,5 +339,10 @@ body, #root {
     padding: 6px;
     border-radius: 8px;
     margin-top: 5%;
+  }
+  .centered{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 }
