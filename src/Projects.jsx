@@ -172,22 +172,22 @@ const Projects = () => {
                     }
                   }}
                 >
-                  {project.images.map((img, idx) => (
-                    <div
-                      key={idx}
-                      className="phone-frame"
-                      variants={{
-                        hidden: { opacity: 0, scale: 0.8 },
-                        visible: { opacity: 1, scale: 1 }
-                      }}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: false, amount: 0.3 }}
-                      transition={{ duration: 0.1, delay: 0.1 * idx }}
-                    >
-                      <img src={img} alt={`Screenshot ${idx}`} className="phone-screen" />
-                    </div>
-                  ))}
+                {project.images.map((img, idx) => (
+  <motion.div
+    key={idx}
+    className="phone-frame"
+    variants={{
+      hidden: { opacity: 0, scale: 0.8 },
+      visible: { opacity: 1, scale: 1 }
+    }}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: false, amount: 0.3 }}
+    transition={{ duration: 0.6, delay: 0.2 * idx }}
+  >
+    <img src={img} alt={`Screenshot ${idx}`} className="phone-screen" />
+  </motion.div>
+))}
                 </motion.div>
               </motion.div>
             </motion.div>
